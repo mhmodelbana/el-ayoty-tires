@@ -1,105 +1,82 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>العيوطي لتجارة الكاوتش والبطاريات</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العيوطي | تجارة الكاوتش والبطاريات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Kufi+Arabic:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="logo">العيوطي لتجارة الكاوتش والبطاريات</div>
-  <nav>
-    <a href="#products">المنتجات</a>
-    <a href="#about">من نحن</a>
-    <a href="#contact">تواصل معنا</a>
-    <div class="cart-icon" onclick="toggleCart()">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span id="cart-count">0</span>
+<div class="loader">
+    <div class="loader-logo">العيوطي لتجارة الكاوتش</div>
+</div>
+
+<div class="cursor"></div>
+
+<nav>
+    <div><strong>العيوطي</strong></div>
+    <div>
+        <a href="#">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <a href="dashboard.html" style="border: 1px solid var(--gold); padding: 5px 15px; border-radius: 20px;">لوحة التحكم</a>
     </div>
-  </nav>
-</header>
+</nav>
 
 <section class="hero">
-  <h1>أقوى عروض الكاوتش والبطاريات</h1>
-  <p>جودة مضمونة – أسعار جملة – توصيل سريع</p>
-  <button onclick="document.getElementById('products').scrollIntoView()">تصفح المنتجات</button>
+    <div class="hero-content">
+        <h1>العيوطي لتجارة الكاوتش والبطاريات</h1>
+        <p>جودة عالمية · توزيع معتمد · أسعار تنافسية</p>
+        <a href="#" class="btn">استكشف المنتجات</a>
+    </div>
 </section>
 
-<section id="products" class="products">
-  <h2>منتجاتنا</h2>
-
-  <div class="filter">
-    <button onclick="filterProducts('all')">الكل</button>
-    <button onclick="filterProducts('tires')">كاوتش</button>
-    <button onclick="filterProducts('batteries')">بطاريات</button>
-  </div>
-
-  <div class="product-list">
-
-    <div class="product" data-category="tires">
-      <h3>كاوتش 185/65R15</h3>
-      <p>السعر: 3200 جنيه</p>
-      <button onclick="addToCart('كاوتش 185/65R15',3200)">إضافة للسلة</button>
+<section id="products" class="section reveal">
+    <h2>منتجاتنا</h2>
+    <div class="products">
+        <div class="card">
+            <img src="https://i.imgur.com/sE9mYbZ.jpeg">
+            <div class="card-body">
+                <h3>Michelin مقاس 15</h3>
+                <div class="price">1450 جنيه</div>
+                <a href="#" class="btn">اطلب الآن</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://i.imgur.com/Yu5Jk8K.jpeg">
+            <div class="card-body">
+                <h3>بطارية Varta 70 أمبير</h3>
+                <div class="price">2150 جنيه</div>
+                <a href="#" class="btn">اطلب الآن</a>
+            </div>
+        </div>
     </div>
-
-    <div class="product" data-category="tires">
-      <h3>كاوتش 205/55R16</h3>
-      <p>السعر: 3900 جنيه</p>
-      <button onclick="addToCart('كاوتش 205/55R16',3900)">إضافة للسلة</button>
-    </div>
-
-    <div class="product" data-category="batteries">
-      <h3>بطارية 70 أمبير</h3>
-      <p>السعر: 2500 جنيه</p>
-      <button onclick="addToCart('بطارية 70 أمبير',2500)">إضافة للسلة</button>
-    </div>
-
-    <div class="product" data-category="batteries">
-      <h3>بطارية 90 أمبير</h3>
-      <p>السعر: 3100 جنيه</p>
-      <button onclick="addToCart('بطارية 90 أمبير',3100)">إضافة للسلة</button>
-    </div>
-
-  </div>
 </section>
 
-<!-- سلة المشتريات -->
-<div class="cart" id="cart">
-  <h2>سلة المشتريات</h2>
-  <div id="cart-items"></div>
-  <h3 id="total">الإجمالي: 0 جنيه</h3>
-  <button onclick="showCheckout()">إتمام الطلب</button>
-</div>
-
-<!-- نافذة البيانات -->
-<div class="checkout" id="checkout">
-  <div class="checkout-content">
-    <h2>بيانات العميل</h2>
-    <input type="text" id="name" placeholder="الاسم بالكامل" />
-    <input type="text" id="phone" placeholder="رقم الهاتف" />
-    <input type="text" id="address" placeholder="عنوان التوصيل" />
-    <button onclick="generateInvoice()">تأكيد وإصدار فاتورة</button>
-    <button class="close-btn" onclick="closeCheckout()">إغلاق</button>
-  </div>
-</div>
-
-<!-- الفاتورة -->
-<div class="invoice" id="invoice">
-  <div class="invoice-content">
-    <h2>فاتورة شراء</h2>
-    <p><strong>العيوطي لتجارة الكاوتش والبطاريات</strong></p>
-    <p id="invoice-details"></p>
-    <button onclick="sendWhatsApp()">إرسال عبر واتساب</button>
-    <button class="close-btn" onclick="closeInvoice()">إغلاق</button>
-  </div>
-</div>
+<section class="section reveal">
+    <h2>أرقامنا</h2>
+    <div class="stats">
+        <div class="stat">
+            <h3 class="counter number" data-target="15">0</h3>
+            <p>سنة خبرة</p>
+        </div>
+        <div class="stat">
+            <h3 class="counter number" data-target="5000">0</h3>
+            <p>عميل راضي</p>
+        </div>
+        <div class="stat">
+            <h3 class="counter number" data-target="20">0</h3>
+            <p>ماركة عالمية</p>
+        </div>
+    </div>
+</section>
 
 <footer>
-  <p>© 2026 العيوطي لتجارة الكاوتش والبطاريات - جميع الحقوق محفوظة</p>
+    © 2026 العيوطي – جميع الحقوق محفوظة
 </footer>
+
+<a href="https://wa.me/201000000000" class="float-btn">💬</a>
 
 <script src="script.js"></script>
 </body>
