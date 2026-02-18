@@ -1,135 +1,50 @@
-body {
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #111;
-  color: #fff;
+:root {
+    --gold: #ffcc00;
+    --dark: #0e0e0e;
+    --gray: #1b1b1b;
+    --white: #ffffff;
+    --slate: #475569;
 }
 
-header {
-  background: #000;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Noto Kufi Arabic', sans-serif; /* الخط العربي */
+    scroll-behavior: smooth;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-  color: #e60000;
+/* استخدام خط Inter للأرقام */
+.number, .counter, .price {
+    font-family: 'Inter', sans-serif !important;
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
+body { background: var(--dark); color: white; overflow-x: hidden; }
 
-.cart-icon {
-  cursor: pointer;
-  position: relative;
-}
+/* Loader & Cursor (كودك الأصلي بدون تعديل) */
+.loader { position: fixed; width: 100%; height: 100vh; background: #000; display: flex; align-items: center; justify-content: center; z-index: 5000; animation: fadeOut 1s forwards; animation-delay: 2s; }
+.loader-logo { color: var(--gold); font-size: 42px; font-weight: 900; letter-spacing: 3px; }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-#cart-count {
-  background: red;
-  border-radius: 50%;
-  padding: 3px 8px;
-  font-size: 12px;
-  position: absolute;
-  top: -10px;
-  right: -10px;
-}
+.cursor { width: 18px; height: 18px; border: 2px solid var(--gold); border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%,-50%); transition: .08s; z-index: 4000; }
 
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(45deg,#000,#1a1a1a);
-}
+/* Nav, Hero, Cards (كودك الأصلي بالكامل) */
+nav { position: fixed; width: 100%; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 3000; }
+nav a { color: white; text-decoration: none; margin-left: 25px; transition: .3s; }
+nav a:hover { color: var(--gold); }
 
-.hero button {
-  padding: 10px 25px;
-  background: red;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+.hero { height: 100vh; background: url('https://i.imgur.com/H0ZzTQv.jpeg') center/cover fixed no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+.hero::after { content:''; position: absolute; width: 100%; height: 100%; background: linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.95)); }
+.hero-content { position: relative; z-index: 2; }
+.hero h1 { font-size: 60px; font-weight: 900; margin-bottom: 20px; }
 
-.products {
-  padding: 50px 20px;
-  text-align: center;
-}
+.card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); border-radius: 20px; overflow: hidden; transition: .4s; }
+.card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+.card img { width: 100%; height: 230px; object-fit: cover; }
 
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 20px;
-}
+.price { color: var(--gold); font-weight: 900; margin: 15px 0; }
+.btn { background: var(--gold); color: black; padding: 15px 35px; border-radius: 50px; font-weight: bold; text-decoration: none; transition: .3s; display: inline-block; border: none; cursor: pointer; }
 
-.product {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.product:hover {
-  transform: scale(1.05);
-}
-
-.product button {
-  background: red;
-  border: none;
-  padding: 8px 15px;
-  cursor: pointer;
-  color: white;
-}
-
-.cart {
-  position: fixed;
-  top: 0;
-  right: -400px;
-  width: 350px;
-  height: 100%;
-  background: #222;
-  padding: 20px;
-  transition: 0.3s;
-  overflow-y: auto;
-}
-
-.cart.active {
-  right: 0;
-}
-
-.checkout, .invoice {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-}
-
-.checkout-content, .invoice-content {
-  background: #222;
-  padding: 30px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-}
-
-button.close-btn {
-  background: gray;
-  margin-top: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #000;
+/* Dashboard Specific (Quiet Luxury) */
+.admin-input {
+    background: transparent; border: 1px solid rgba(255,255,255,0.1);
+    color: white; padding: 12px; margin-bottom: 10px; width: 100%;
 }
